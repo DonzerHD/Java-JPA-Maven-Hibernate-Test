@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!-- 
+2. This file defines classes you wish to persist. How these classes are 
+mapped to database tables. Database driver, location, userid and pw
+ -->
+ 
+<persistence version="2.0"
+    xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    
+    <!-- Define a name used to get an entity manager. Define that you will 
+    complete transactions with the DB  -->
+    <persistence-unit name="Personne" transaction-type="RESOURCE_LOCAL">
+    
+        <!-- Define the class for Hibernate which implements JPA -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- Define the object that should be persisted in the database -->
+        <class>Personne.Utilisateur</class>
+        <properties>
+            <!-- Driver for DB database -->
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <!-- URL for DB -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" />
+            <!-- Username -->
+            <property name="javax.persistence.jdbc.user" value="postgres" />
+            <!-- Password -->
+            <property name="javax.persistence.jdbc.password" value="gmgrnp2s" />
+        </properties>
+    </persistence-unit>
+</persistence>
+
+ 
