@@ -14,8 +14,14 @@ public class TestSystem {
 	private static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("Personne");
 
 	public static void main(String[] args) {
-		addUtilisateur(1, "LEMAY", "Thomas");
-       
+	    getUtilisateurs();
+	    
+	    deleteUtilisateur(1);
+	    
+	    System.out.println("On supprim un utilisateur");
+	    getUtilisateurs();
+	    
+	    
 		ENTITY_MANAGER_FACTORY.close();
 
 	}
@@ -43,9 +49,9 @@ public class TestSystem {
 
 	}
 
-	/*public static void getUtilisateur(int id) {
+	public static void getUtilisateur(int id) {
 		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-		String query = "SELECT a FROM personne.utilisateur a WHERE a.id = :id ";
+		String query = "SELECT u FROM Utilisateur u WHERE u.id = :id";
 
 		TypedQuery<Utilisateur> tq = em.createQuery(query, Utilisateur.class);
 		tq.setParameter("id", id);
@@ -60,9 +66,10 @@ public class TestSystem {
 		}
 	}
 
+	
 	public static void getUtilisateurs() {
 		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-		String strQuery = "SELECT a FROM personne.utilisateur a WHERE a.id IS NOT NULL";
+		String strQuery = "SELECT a FROM Utilisateur a WHERE a.id IS NOT NULL";
 		TypedQuery<Utilisateur> tq = em.createQuery(strQuery, Utilisateur.class);
 		List<Utilisateur> utils;
 		try {
@@ -107,8 +114,6 @@ public class TestSystem {
 			et.begin();
 			util = em.find(Utilisateur.class, id);
 			em.remove(util);
-
-			em.persist(util);
 			et.commit();
 		} catch (Exception ex) {
 			if (et != null) {
@@ -119,6 +124,6 @@ public class TestSystem {
 			em.close();
 		}
 
-	} */
+	} 
 
 }
